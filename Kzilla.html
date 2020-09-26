@@ -1,0 +1,130 @@
+<html>
+    <body>
+        <div class="team-container">
+            <div class="team-row">
+                <img class="team-member" />
+                <img class="team-member" />
+                <img class="team-member" />
+                <img class="team-member" />
+                <img class="team-member" />
+                <img class="team-member" />
+                <img class="team-member" />
+            </div>
+            <div class="team-row">
+                <img class="team-member" />
+                <img class="team-member" />
+                <img class="team-member" />
+                <img class="team-member" />
+                <img class="team-member" />
+                <img class="team-member" />
+                <img class="team-member" />
+            </div>
+            <div class="team-row">
+                <img class="team-member" />
+                <img class="team-member" />
+                <img class="team-member" />
+                <img class="team-member" />
+                <img class="team-member" />
+                <img class="team-member" />
+                <img class="team-member" />
+            </div>
+            <div class="team-row">
+                <img class="team-member" />
+                <img class="team-member" />
+                <img class="team-member" />
+                <img class="team-member" />
+                <img class="team-member" />
+                <img class="team-member" />
+                <img class="team-member" />
+            </div>
+        </div>
+
+
+        <style>
+            .team-row{
+                background: black;
+                padding-top: 80px;
+                padding-bottom: 80px;
+                display: flex;
+            }
+
+            .team-member{
+
+                margin: 0 auto;
+                display: block;
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                background: blanchedalmond ;
+            }
+        </style>
+
+
+        <script>
+        let conatainer = document.querySelector('.team-container');
+
+                        conatainer.addEventListener('mousemove', (e) =>{
+                            let members = document.querySelectorAll('.team-member');
+                            members.forEach(member => {
+                                const a = e.pageX - member.getBoundingClientRect().left;
+                                const w = member.getBoundingClientRect().width;
+
+                                const b = e.pageY - member.getBoundingClientRect().top;
+                                const h = member.getBoundingClientRect().height;
+                                
+
+                                if(a<=w && a>=0 && b<=h && b>=0){
+                                    return member.src="download.png"
+                                }
+
+                               let rectXCenter = (member.getBoundingClientRect().left + member.getBoundingClientRect().width/2);
+                               let rectYCenter = (member.getBoundingClientRect().top + member.getBoundingClientRect().height/2);
+
+                                 let radianDegrees = Math.atan2(e.pageX - rectXCenter, e.pageY - rectYCenter);
+                                 let rotation = (radianDegrees * (180 / Math.PI) * -1) + 180 ;
+                                    console.log(rotation)
+                                   setImage(member, rotation);
+
+                            })
+
+                       
+                        });
+         container.addEventListener('mouseout', (e) => {
+            let members = document.querySelectorAll('.team-member');
+            members.forEach(member => {
+                member.src = "out.png"
+
+                console.log("hey")
+
+            })
+
+        });
+
+            function setImage(elem, rotation)
+            {
+                var src = ""
+
+                if(rotation > 22.5 && rotation <= 67.5){
+                    src = "topright.png";
+                } else if (rotation > 67.5 && rotation <= 112.5){
+                    src = "right.png";
+                } else if (rotation > 112.5 && rotation <= 157.5){
+                    src = "rightbottom.png";
+                } else if (rotation > 157.5 && rotation <= 202.5){
+                    src = "down.png";
+                } else if (rotation > 202.5 && rotation <= 247.5){
+                    src = "downleft.png";
+                } else if (rotation > 247.5 && rotation <= 292.5){
+                    src = "left.png";
+                } else if (rotation > 292.5 && rotation <= 337.5){
+                    src = "lefttop.png";
+                } else {
+                    src = "top.png";
+                }
+                elem.src = src;
+
+            }
+        </script>
+            
+    </body>
+</html>
